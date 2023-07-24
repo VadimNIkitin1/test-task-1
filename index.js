@@ -5,6 +5,10 @@ const timerEl = document.querySelector("span");
 const createTimerAnimator = () => {
   return (time) => {
     function startTimer() {
+      if (time === 0) {
+        clearInterval(timer);
+      }
+
       const seconds = Math.floor(time % 60);
       const minutes = Math.floor((time / 60) % 60);
       const hours = Math.floor((time / 3600) % 60);
@@ -18,7 +22,7 @@ const createTimerAnimator = () => {
 
     startTimer();
 
-    setInterval(startTimer, 1000);
+    const timer = setInterval(startTimer, 1000);
   };
 };
 
